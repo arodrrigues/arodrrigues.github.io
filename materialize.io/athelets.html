@@ -1,0 +1,272 @@
+
+<!-- Welcome to some sample code to control your Firebase Database -->
+<!-- HERE IS YOUR HTML TO SET UP YOUR PAGE -->
+<html>
+    <head>
+        <!-- HERE ARE YOUR FIREBASE and GOOGLE AUTHENICATION IMPORTS -->
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-database.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+        <!-- Add SDKs for Firebase products that you want to use 
+          https://firebase.google.com/docs/web/setup#available-libraries -->
+          <style>
+
+            * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* Style the header */
+    .header {
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: center;
+  color: red;
+}
+    body {
+      background-color: #2E9AFE;
+      }
+
+      h2, h3 {
+
+        color: #F65858;
+      }
+
+    .topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+          </style>
+ 
+    </head>
+
+    <body >
+            <h1 id="uid"></h1>
+            
+            <!-- HERE IS YOUR HTML CODE TO SET TEXT -->
+            <div class="topnav">
+  <a href="home.html">Home</a>
+  <a href="matchup.html">Matchups</a>
+  <a href="#">More</a>
+</div>
+
+            <h2>Best Players At Each Position in the National Football Leaugue</h2>
+            <h3>Click Get Data to See the Top Players Throughout our Database and Set Data to Introduce your own Players!</h3>
+
+            <button onclick = "signin()" >Sign In</button>
+           
+            <input type="text" id="position" value="Enter Position">
+            <input type="text" id="team" value="Enter Team">
+            <input type="text" id="player" value="Enter Player">
+
+            <button onclick = "setData()" >Add New Player</button>
+            <button onclick = "getData()" >Show Player List</button>
+
+            <p>Current Data:</p>
+
+            <!-- ol means ordered list -->
+            <div class="row">
+  <div class="column">
+    <p><ol id="positionList"></ol>
+    
+  </div>
+                     <div class="row">
+  <div class="column">
+    <ol id="teamList"></ol>
+    
+  </div>
+                     <div class="row">
+  <div class="column">
+    <ol id="playerList"></ol></p>  
+    
+  </div>
+  
+                            
+                 
+    </body>
+    
+    <!-- HERE IS THE JAVASCRIPT TO CONNECT TO YOUR FIREBASE -->
+    <script>
+
+        // Variables created here to be used throughout the program
+
+        var provider = new firebase.auth.GoogleAuthProvider();
+        var userId = document.getElementById("uid").innerHTML;
+        
+        // Your web app's Firebase configuration that we copy-and-paste from 
+        // the Firebase setup
+        var config = {
+
+            apiKey: "AIzaSyDtc1qmHpcEXWAXZnvHkc_y-Nj7V0xUaVI",
+   		    authDomain: "y10-codingar.firebaseapp.com",
+            databaseURL: "https://y10-codingar.firebaseio.com",
+            projectId: "y10-codingar",
+            storageBucket: "y10-codingar.appspot.com",
+            messagingSenderId: "623571416736",
+            appId: "1:623571416736:web:33d69b859789610c18fbc5",
+            measurementId: "G-QNBJWX2HL7"
+
+          };
+
+        firebase.initializeApp(config);
+        //firebase.analytics();
+
+        // Authentication Check: to see if you are logged in
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user == null) {
+                document.getElementById("uid").innerHTML = "Player Database";
+                return;
+            } else {
+                userId = user.uid; // you can also get .displayName, .photoURL, .email
+                document.getElementById("uid").innerHTML = userId; // display Google uid on page
+                
+            } // end user null check
+        }); // end check auth state
+
+
+        // Functions that will be used to "get" and "set" data, among other "helper"
+        // functions too...
+
+        function signin() {
+            var provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithRedirect(provider).then(function(result) { 
+                window.location.replace("fbtest.html");
+            });
+        } // end signin 
+
+        function setData() {
+
+            // Create a database object that we can refer to
+            var database = firebase.database();
+
+            // Create a reference to a particular location or "node" called StudentInfo
+            var ref = database.ref('PlayerInfo');
+
+            // Grab the Name, Subject, and Grade obtained from the HTML frontend textboxes
+            var s_position = document.getElementById("position").value;
+            var s_team = document.getElementById("team").value;
+            var s_player = document.getElementById("player").value;
+            
+            // Create a JSON object to add to the database with user-inputted data
+            var data = {
+                position: s_position,
+                team: s_team,
+                player: s_player
+            }
+            // "PUSH" means we add something to the database
+            ref.push(data);
+        } // end setdata
+
+        function getData() {
+
+            // Create a database object that we can refer to
+            var database = firebase.database();
+
+            // Create a reference to a particular location or "node"
+            // 'StudentInfo'is the name of the main branch in the database
+            var ref = database.ref('PlayerInfo');
+
+            // we will make reference to each 'value' of a database object which will have 
+            // two helper functions latched "on" to it to perform additional tasks 
+            // - either we have access to data values, or we don't and there is an error
+
+            ref.on('value', gotData, errData) 
+            // jump to the helper function...think of 'value' as the parameter that is passed
+
+        } // end getdata
+
+        function gotData(data){
+
+            // clear items from previously created lists
+            document.getElementById("positionList").innerHTML = "";
+            document.getElementById("teamList").innerHTML = "";
+            document.getElementById("playerList").innerHTML = "";
+            
+            // collect all of the unique objects ('keys' or id's) out of the database
+            var playerData = data.val(); // access the data 'value' of each student 'object' 
+            var keys = Object.keys(playerData);
+            console.log(keys);
+
+            // iterate through the unique object id's and grab data fields: 'name', 'subject', 'mark'
+            for (var i = 0; i < keys.length; i++){
+              var k = keys[i];
+              var position = playerData[k].position;
+              var team = playerData[k].team;
+              var player = playerData[k].player;
+
+              // DISPLAY STUDENT NAMES
+              // Create a reference to the ordered list called 'studentList'
+              // called 'oListStudent'
+              var oListPosition = document.getElementById('positionList');
+              var entry = document.createElement('li'); // a list element to be added to the ordered list
+              entry.appendChild(document.createTextNode(position));
+              oListPosition.appendChild(entry);
+
+              // DISPLAY STUDENT SUBJECTS
+              // Create a reference to the ordered list called 'studentList'
+              // called 'oListStudent'
+              var oListTeam = document.getElementById('teamList');
+              var entry = document.createElement('li'); // a list element to be added to the ordered list
+              entry.appendChild(document.createTextNode(team));
+              oListTeam.appendChild(entry);
+
+              // DISPLAY STUDENT MARKS
+              // Create a reference to the ordered list called 'markList'
+              // called 'oListMark'
+              var oListPlayer = document.getElementById('playerList');
+              var entry = document.createElement('li'); // a list element to be added to the ordered list
+              entry.appendChild(document.createTextNode(player));
+              oListPlayer.appendChild(entry);
+              
+              // AJ: we only need to send information to the console window when we
+              // are debugging our code of errors
+              // console.log (keys[i]);
+              // console.log (subject);
+
+            }
+        }
+
+        function errData(err){
+            console.log('Error!')
+            console.log(err)
+        }
+
+    </script>
+</html>
