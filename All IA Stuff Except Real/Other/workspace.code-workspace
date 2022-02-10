@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../JS_Examples"
+		},
+		{
+			"path": "../../DP_CS_Code_ARodrigues/Python_Contest"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "arodrrigues.github.io"
+	}
+}

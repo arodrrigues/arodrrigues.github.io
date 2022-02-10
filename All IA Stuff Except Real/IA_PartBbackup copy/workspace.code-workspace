@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../IA_PartBbackup"
+		},
+		{
+			"path": "../IA_New"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "IA_New"
+	}
+}

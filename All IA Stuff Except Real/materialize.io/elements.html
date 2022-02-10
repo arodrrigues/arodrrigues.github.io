@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+</head>
+<body>
+
+<nav>
+		<div class="yellow darken-2 nav-wrapper">
+			<a href="#" class="brand-logo center">Elements(YR-11)</a>
+			<ul id="nav-mobile" class="left hide-on-med-and-down">
+				<li><a href="index.html" id = "logout_nav" style = "display: block">Logout</a></li>
+				<li><a href="#" id = "elements_nav" style = "display: block;">Elements</a></li>
+				<li><a href="elements_game.html" id = "elements_game_nav" style = "display: block">Elements Game</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class = "container" >
+		
+		<h1>THESE ARE THE ELEMENTS</h1>
+		
+		<div class="row" id = "elementDisplay">
+			
+
+
+		</div>
+
+	</div>
+
+  <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-database.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+	 https://firebase.google.com/docs/web/setup#available-libraries -->
+
+	<script>
+// Your web app's Firebase configuration
+var firebaseConfig = {
+            apiKey: "AIzaSyD-NaqWzK22rWsvj8-H572KwJV8dB1Wo7E",
+            authDomain: "y-11coding-ar.firebaseapp.com",
+            databaseURL: "https://y-11coding-ar-default-rtdb.firebaseio.com",
+            projectId: "y-11coding-ar",
+            storageBucket: "y-11coding-ar.appspot.com",
+            messagingSenderId: "567896277321",
+            appId: "1:567896277321:web:ef1e4c36bec5a4691e9a98"
+        };
+	// Initialize Firebase
+	firebase.initializeApp(firebaseConfig);
+	database = firebase.database()
+	</script>
+
+    <script> 
+
+
+
+		dataDB =  database.ref('/elements/').once('value').then((snapshot) => {
+			var result =snapshot.val()
+			console.log(result)
+		});
+
+
+    	function demoIdea(data) {
+
+    		//What it does --> Creates a stirng version of data
+    		//Return Type --> String
+    		//Parameter --> A JSON object
+    		//Name --> stringify
+    		//Static --> It is not invoked with an instance - JSON is the package where stringify lives. 
+    		dataSTR = JSON.stringify(data);
+    		console.log(dataSTR)
+    		dataJSON = JSON.parse(dataSTR);
+    		console.log("*****")
+    		console.log(dataJSON)
+
+    	}
+
+
+    	//Grabbed the object on the screen I want to add my cards. 
+    	const elementDisplay = document.getElementById("elementDisplay")
+
+
+		function createCard(elemOBJ) {
+
+				console.log(elemOBJ)
+				const card = ` 	
+					<div class="col s12 m6 l4">
+						<div class="card small blue-grey darken-1">
+							<div class="card-content white-text">
+			 					<span class="card-title">${elemOBJ["name"]}: ${elemOBJ["symbol"]}</span>
+			  					<p>${elemOBJ["fact"]}</p>
+							</div>
+							<div class="card-action">
+								<a href="#">This is a link</a>
+								<a href="#">This is a link</a>
+							</div>
+						</div>
+				</div>
+				`
+
+				return card
+			}    	
+
+    	var data = 
+			{	
+				"elements": [
+					{ 
+						"name": "Hydogen",
+						"symbol": "H", 
+						"number": 1, 
+						"atomicMass": 1.007947, 
+						"img": "LINK",
+						"fact": "Hydrogen is the most abundent element in the universe"
+					},
+					{
+						"name": "Helium",
+						"symbol": "He",
+						"number": 2, 
+						"atomicMass": 4.002602, 
+						"img": "LINK",
+						"fact": "Helium is a colourless, tasteless and odorless gas"
+
+					},
+					{
+						"name": "Lithium",
+						"symbol": "Li",
+						"number": 3, 
+						"atomicMass": 6.941, 
+						"img": "LINK",
+						"fact": "Used to treat major depressive disorders."
+
+					},
+					{
+						"name": "Beryllium",
+						"symbol": "Be",
+						"number": 4, 
+						"atomicMass": 9.012182, 
+						"img": "LINK",
+						"fact": "beryllium is used to make cell phones, missiles and aircrafts.."
+
+					}
+				]
+			}
+
+			//demoIdea(data)
+
+			//STRING CONSTURCTION
+			dataSTR = ""
+			for (i = 0; i < data["elements"].length; i = i + 1) {
+
+				dataSTR = dataSTR + createCard(data["elements"][i])
+				
+			}
+			elementDisplay.innerHTML = dataSTR
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+
+</html>

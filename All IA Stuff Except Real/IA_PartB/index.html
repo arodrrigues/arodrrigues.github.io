@@ -1,0 +1,68 @@
+<html>
+
+
+    <head>
+        <meta charset="utf-8">
+            <!-- Cool Google Fonts -->
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
+            <!-- Our stylesheet -->
+            <link rel="stylesheet" type="text/css" href="index.css">
+         <!-- Compiled and minified CSS -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        
+        <style>
+            #adminlogin{
+                position: absolute;
+                width: 300px;
+                height: 400px;
+                padding: 20px;
+                top: 48%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+            }
+            
+            .login_form{
+                padding: 20px;
+                
+            }
+            .pt-1{
+                padding-top: 0rem;
+                padding-bottom: 0rem;
+            }
+
+            .center{
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <section id="adminlogin" class="card z-depth-3">
+            <div class="card-panel center light-blue darken-3">
+                <span class="card-title white-text">Login</span>
+                    <input type="text" id="full_name" placeholder="Full name">
+                <input type="email" id="email" placeholder="Email">
+                <input type="password" id="password" placeholder="New Password">
+
+                <div id="button_container">
+                    <button onclick="login()" class="btn-small light-blue darken-3">Login</button>
+                    <button onclick="register()" class="btn-small light-blue darken-3">Register</button>
+                </div>
+            </section>
+        </div>
+    </body>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+    <!-- Our script must be loaded after firebase references -->
+    <script src="index.js"></script>
+
+</html>

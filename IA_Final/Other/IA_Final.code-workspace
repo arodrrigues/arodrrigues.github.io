@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../IA_PartBbackup copy"
+		},
+		{
+			"path": "../IA_Testing"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "IA_Testing"
+	}
+}

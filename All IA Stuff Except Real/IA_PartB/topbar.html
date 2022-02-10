@@ -1,0 +1,135 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
+
+  <header>
+    <nav class="nav-wrapper light-blue ">
+      <div class="container">
+        <a href="#" class="brand-logo">UCC Art Display</a>
+         <ul class="right hide-on-small-and-down">
+          <li><a href="#login_modal" id = "login_nav" class = "modal-trigger" >Login</a></li>
+          <li><a href="#new_user_modal" id = "login_nav" class = "modal-trigger" >New User</a></li>
+        </ul>
+       
+   </header>
+
+  <!-- Modal Structure -->
+  <div id="login_modal" class="modal">
+    <div class="modal-content">
+      <form id = "login_form" autocomplete = "off">
+        <div class = "input-field">
+          <input type = "text" id = "user_email" autocomplete = "" required/>
+          <label for ="user_email">User Email</label>
+        </div>
+        <div class = "input-field">
+          <input type = "password" id = "user_password" autocomplete = "" required/>
+          <label for ="user_password">Password</label>
+        </div>
+        <button class = "btn teal darken-2 z-depth-0">Sign In</button>
+      </form> 
+        <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat"></a>
+    </div>
+  </div>
+    <br/>
+  <div class = "container">
+  </div>
+    </div>
+  <div id="new_user_modal" class="modal">
+    <div class="modal-content">
+      <form id = "new_user_form" autocomplete="off">
+        <div class = "input-field">
+          <input type = "text" id = "user_email" autocomplete = "" required/>
+          <label for ="user_email">User Email</label>
+        </div>
+        <div class = "input-field">
+          <input type = "password" id = "user_password" autocomplete = "" required/>
+          <label for ="user_password">Password</label>
+        </div>
+        <div class = "input-field">
+          <input type = "password" id = "user_password" autocomplete = "" required/>
+          <label for ="user_password">Verify Password</label>
+        </div>
+        <button class = "btn teal darken-2 z-depth-0">Sign Up</button>
+      </form> 
+        <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-blue btn-flat"></a>
+    </div>
+  </div>
+    <br/>
+  <div class = "container">
+  </div>
+    </div>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+
+        users = [
+
+              {
+              "firstName": "Andrew",
+              "lastName": "Rodrigues",
+              "password": "12345678",
+              "age": 17,
+              "email": "andrew.rodrigues@ucc.on.ca"  
+              },
+
+              {
+              "firstName": "Eli",x
+              "lastName": "Preston",
+              "password": "87654321",
+              "age": 17,
+              "email": "eli.preston@ucc.on.ca"  
+              },
+
+              {
+              "firstName": "",
+              "lastName": "",
+              "password": "",
+              "age": 17,
+              "email": ""  
+              },
+
+    
+        ]
+
+    </script>
+
+    <script>
+  
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+      options = {opacity: 0.7}
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems, options);
+    });
+
+    const cuser_BTN = document.getElementById("cuser_BTN")
+
+      cuser_BTN.addEventListener("click",(e) => {
+        console.log("CURRENT USER:",cuser)
+
+      });
+
+    </script>
+
+            
+</body>
+
+
+
+</html>

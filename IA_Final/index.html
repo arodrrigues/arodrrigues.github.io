@@ -1,0 +1,231 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <title>IA Final</title>
+</head>
+
+<style>
+    header{
+        background: url(img/UCC_Background.jpg);
+        background-size: cover;
+        background-position: center;
+        min-height: 750px;
+    };
+
+</style>
+
+<body class="grey lighten-3">
+
+<!-- NAVBAR -->
+<header>
+    <nav class="z-depth-0 blue lighten-3">
+        <div class="nav-wrapper container">
+        <a href="#" class="brand-logo">
+            <img src="ucclogo.png" style="width: auto; height: 50px; margin-top: 10px;">
+        </a>
+        <a href="#" class="brand-logo center blue-text text-darken-4">UCC Artwork</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li class="logged-in">
+                <a href="#" class="grey-text text-darken-2 modal-trigger" data-target="modal-account">Account</a>
+            </li>
+            <li class="logged-in">
+                <a href="#" class="grey-text text-darken-2 btn-center blue lighten-3" id="display" onclick="myart()">My Art</a>
+            </li>
+            <li class="logged-in">
+                <a href="#" class="grey-text text-darken-2 btn-center blue lighten-3" id="display" onclick="gallery()">Gallery</a>
+            </li>
+            <li class="logged-out">
+                <a href="#" class="grey-text text-darken-2 modal-trigger" data-target="modal-login">Login</a>
+            </li>
+            <li class="logged-out">
+                <a href="#" class="grey-text text-darken-2 modal-trigger" data-target="modal-signup">Sign up</a>
+            </li>
+            <li class="logged-in">
+                <a href="#" class="grey-text text-darken-2" id="logout">Logout</a>
+            </li>
+            </span>
+        </ul>
+        </div>
+    </nav>
+</header>
+
+    <!-- SIGN UP MODAL -->
+    <div id="modal-signup" class="modal">
+        <div class="modal-content">
+        <h4>Sign up</h4><br />
+        <form id="signup-form">
+            <div class="input-field">
+                <input type="email" id="signup-email" required />
+                <label for="signup-email">Email address</label>
+            </div>
+            <div class="input-field">
+                <input type="password" id="signup-password" required />
+                <label for="signup-password">Choose password</label>
+            </div>
+            <div class="input-field">
+                <input type="text" id="signup-name" required />
+                <label for="signup-bio">Full Name</label>
+              </div>
+            <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+        </form>
+        </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+        <h4>Login</h4><br />
+        <form id="login-form">
+            <div class="input-field">
+                <input type="email" id="login-email" required />
+                <label for="login-email">Email address</label>
+            </div>
+            <div class="input-field">
+                <input type="password" id="login-password" required />
+                <label for="login-password">Your password</label>
+            </div>
+            <button class="btn yellow darken-2 z-depth-0">Login</button>
+        </form>
+        </div>
+    </div>
+
+    <!-- ACCOUNT MODAL -->
+    <div id="modal-account" class="modal">
+        <div class="modal-content center-align">
+        <h4>Account Details</h4>
+        <div class="account-details"></div>
+        </div>
+    </div>
+
+  <!-- UPLOAD PHOTO -->
+  <div id="modal-create" class="modal">
+    <div class="modal-content">
+    <h4>Upload Art</h4><br/>
+    <form id="create-form">
+        <!--
+        <div class="input-field">
+            <input type="text" id="title" required>
+            <label for="title">Piece Title</label>
+        </div>
+        <div class="input-field">
+            <textarea id="content" class="materialize-textarea" required></textarea>
+            <label for="content">Piece Caption</label>
+        </div>
+        -->
+        <div>
+            <label class="btn blue" for="imageFileBtn" style="cursor: pointer;">Upload Image</label>
+            <input type="file" accept="image/" name="image" id="imageFileBtn"  onchange="addImage()" style="display: none;">
+        </div>
+        <!--
+        <br></br>
+        <button class="btn yellow darken-2 z-depth-0">Create</button>
+        -->
+    </form>
+    </div>
+</div>
+
+<br></br>
+
+
+<!-- INFORMATION CARDS -->
+<div class="logged-in">
+<div class="card-deck">
+    <div class="card">
+    <br></br>
+      <div class="card-body valign center">
+        <h5 class="card-title">Uploading Images to the School Gallery</h5>
+        <p class="card-text">To upload your artwork to the school gallery allows for anyone to see your artwork on the gallery page. This will also allow your artwork to be viewed in your personal gallery. To do so, click the Gallery link at the top left of your screen in the nav bar. Once you have reached the gallery page, click the Add Art button at the top left of your screen in the nav bar. Once you have done so, your art will appear in the school gallery as well as your personal gallery. </p>
+      </div>
+      <br></br>
+    </div>
+    <div class="card">
+    <br></br>
+      <div class="card-body valign center">
+        <h5 class="card-title">Uplaoding Images to Personal Gallery</h5>
+        <p class="card-text">To upload your artwork to your own personal gallery ensures that only you will be able to view this artwork. This means that your artwork will not be included in the school gallery as well. To do so, click the My Art link at the top left of your screen in the nav bar. Once you have reached the gallery page, click the Add Art button at the top left of your screen in the nav bar. Once you have done so, your art will appear in your personal gallery (My Art page) and not the school gallery. </p>
+      </div>
+      <br></br>
+    </div>
+    <!-- 
+    <div class="card">
+      <div class="card-body col s12 m7">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+      </div>
+    </div>
+    -->
+</div>
+
+<br></br>
+
+
+    <!-- MIDLINE -->
+    <footer class="span grey lighten-3">
+        <br></br>
+            <div class="container center-align">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</div>
+            <br></br>
+    </footer>
+
+    <!-- Gallery -->
+    <body onload="getImages()">
+        <div class="boxed">
+            <div class="grid">
+            <div class="row">
+                <div class="container" id="imageDisplay"></div>
+            </div>
+            </div>
+        </div>
+    </body>
+</div>
+
+    <!-- FOOTER -->
+    <footer class="page-footer  grey darken-3">
+        <div class="footer-copyright">
+            <div class="container center-align">&copy; 2021 Andrew Rodrigues</div>
+          </div>
+    </footer>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+    
+    <script>
+        // initialize firebase
+            var firebaseConfig = {
+                apiKey: "AIzaSyCedx72ePgxsKJGD0zh_Qo2Kz6d7NK8Ahk",
+                authDomain: "y12-ia-real.firebaseapp.com",
+                projectId: "y12-ia-real",
+                storageBucket: "y12-ia-real.appspot.com",
+                messagingSenderId: "1091994642326",
+                appId: "1:1091994642326:web:16404f6b63dedb9ed79fb7",
+                measurementId: "G-KQ0Z0WDJP3"
+            };
+            firebase.initializeApp(firebaseConfig);
+            
+            // make auth and firestore references
+            const auth = firebase.auth();
+            const db = firebase.firestore();
+            const storage = firebase.storage();
+            const storageRef = storage.ref(); //references the storage bucket of my firebase system
+
+        </script>
+
+
+       <!-- Compiled and minified JavaScript -->
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+       <script src="scripts/auth.js"></script>
+       <script src="scripts/index.js"></script> 
+       <script src="scripts/upload.js"></script>    
+     
+
+
+
+</body>

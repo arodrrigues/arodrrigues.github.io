@@ -1,0 +1,99 @@
+
+
+<html>
+
+
+
+  <head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" 
+  integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <style>
+   
+
+    </style>
+
+  </head>
+
+  <body>
+
+
+    <ul id="slide-out" class="sidenav" onload="getUser()">
+      <li><div class="user-view">
+        <div class="background blue">
+        </div>
+        <a><span class="white-text email" ></span></a>
+      </div></li>
+      <li></li>
+      <li></li>
+      <li><div class="divider"></div></li>
+      <li><a class="subheader"></a></li>
+      <li><label class="btn red" style="cursor: pointer;" onclick="logOut()">Logout</label></li>
+    </ul>
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+  
+
+
+    <nav class="nav-wrapper blue darken-2">
+      <div class="container">
+      <label class="btn green" for="imageFileBtn" style="cursor: pointer;">Upload Image</label>
+      <input type="file" accept="image/" name="image" id="imageFileBtn"  onchange="addImage()" style="display: none;">
+        <label class="btn purple" for="imageDsiplay" style="cursor: pointer;"   onclick="getImages()">Show Images</label>
+
+      <div class="materialboxed">
+        <div class="grid">
+          <div class="row">
+            <div class="container" id="imageDisplay"></div>
+          </div>
+        </div>
+      </div>
+
+        <input type="file" accept="image/" name="image" style="display: none;">
+        <input type="file" accept="image/" name="image" style="display: none;">
+
+        
+    </div>
+
+
+
+
+
+  </body>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-database.js"></script>
+  <script src='scripts/upload.js'></script>
+  <script>
+    $(document).ready(function(){
+
+      $('.sidenav').sidenav();
+      $('.materialboxed').materialbox();
+      $('.parallax').parallax();
+      $('.tabs').tabs();
+      $('.datepicker').datepicker({
+        disableWeekends: true,
+        yearRange: 1
+      });
+      $('.tooltipped').tooltip();
+      $('.scrollspy').scrollSpy();
+
+    });
+  </script>
+
+
+
+</html>
+
+
+

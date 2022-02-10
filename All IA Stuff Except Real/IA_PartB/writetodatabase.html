@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	   <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+</head>
+<body>
+
+
+
+	<div>
+
+		
+
+
+
+</body>
+</html>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-database.js"></script>
+
+<script>
+
+// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey: "",
+			authDomain: "",
+			databaseURL: "",
+			projectId: "",
+			storageBucket: "",
+			messagingSenderId: "",
+			appId: ""
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+
+		database = firebase.database()
+
+	var users = [
+		{
+			"name": "",
+			"pword": "",
+		},
+		{
+			"name": "",
+			"pword": "",
+		}
+
+
+		]
+
+	var elements =  [
+					{ 
+						
+					},
+					
+					
+				]
+			
+	var name = ""
+	//This generates a Promise - Process in web-development which is generated when a task is
+	//being done that takes time
+	x = database.ref().set({
+   		elements
+   		//does something that accesses and updates name from the database
+   		
+  	}).then((result) => {
+  		console.log("************"+result)
+  		name = "Andrew"
+  		//does 
+  	});
+
+ 	console.log(name)
+	//once will pull the data once and only once!
+	//on pulls the data when the page is loaded and then listens for changes in the database
+	y = database.ref().once('value').then((snapshot) => {
+
+
+  			console.log(snapshot.val())
+  			
+  	});
+
+
+  	
+
+  	console.log(x)
+
+  	x.then((val) => {
+  		console.log("Database updated!")
+  		console.log("*****",name)
+  		
+  		firebase.database().ref().once('value').then((snapshot) => {
+  			console.log(snapshot.val())
+
+  		});
+  	});
+
+  	console.log("!!!!!!!!!!!!")
+
+</script>
